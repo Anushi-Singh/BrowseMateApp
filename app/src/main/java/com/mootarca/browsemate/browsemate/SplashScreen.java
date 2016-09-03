@@ -1,11 +1,15 @@
 package com.mootarca.browsemate.browsemate;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Handler;
+import android.provider.Settings;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,11 +22,13 @@ public class SplashScreen extends AppCompatActivity {
     TextView tv;
     AlertDialog.Builder adb;
     static final int TIME_OUT=1500;
+    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        view=findViewById(R.id.brand_name);
         fullScreenView=findViewById(R.id.brand_name);
         Typeface tf=Typeface.createFromAsset(getAssets(),"fonts/ARDESTINE.ttf");
         tv=(TextView)findViewById(R.id.brand_name);
@@ -68,9 +74,34 @@ public class SplashScreen extends AppCompatActivity {
             adb.setMessage(R.string.splash_dialog_msg);
             adb.setTitle(R.string.splash_dialog_title);
             adb.setIcon(R.mipmap.app_icon);
-            adb.setPositiveButton(R.string.splash_dialog_right,null);
-            adb.setNegativeButton(R.string.splash_dialog_left,null);
+            adb.setPositiveButton(R.string.splash_dialog_right, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    startActivity(new Intent(Settings.ACTION_SETTINGS));
+                }
+            });
+            adb.setNegativeButton(R.string.splash_dialog_left, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    handlingWifi();
+                }
+            });
             adb.show();
+        }
+    }
+    public void handlingWifi(){
+        WifiManager wm=(WifiManager)getSystemService(WIFI_SERVICE);
+        if (wm.isWifiEnabled()){
+            Snackbar.make(view,R.string.not_wifi_snack, Snackbar.LENGTH_LONG)
+                    .setAction("OK", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(Settings.ACTION_SETTINGS));
+                        }
+                    }).show();
+        }
+        else {
+            startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
         }
     }
 }

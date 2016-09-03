@@ -5,4 +5,5 @@
     <string name="splash_dialog_msg">Connect Using Wifi or Check Your Settings</string>
     <string name="splash_dialog_left">WI-FI</string>
     <string name="splash_dialog_right">Settings</string>
+    <string name="not_wifi_snack">Your are not in a Accessible Wifi Zone.Go to Settings</string>
 </resources>
