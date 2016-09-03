@@ -69,25 +69,29 @@ public class SplashScreen extends AppCompatActivity {
     }
     public void connectToNetwork(){
         boolean isNetworkAvailable=isNetConnected();
-        if (!isNetworkAvailable){
-            adb=new AlertDialog.Builder(this);
-            adb.setMessage(R.string.splash_dialog_msg);
-            adb.setTitle(R.string.splash_dialog_title);
-            adb.setIcon(R.mipmap.app_icon);
-            adb.setPositiveButton(R.string.splash_dialog_right, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    startActivity(new Intent(Settings.ACTION_SETTINGS));
-                }
-            });
-            adb.setNegativeButton(R.string.splash_dialog_left, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    handlingWifi();
-                }
-            });
-            adb.show();
-        }
+            if (!isNetworkAvailable){
+                adb=new AlertDialog.Builder(this);
+                adb.setMessage(R.string.splash_dialog_msg);
+                adb.setTitle(R.string.splash_dialog_title);
+                adb.setIcon(R.mipmap.app_icon);
+                adb.setPositiveButton(R.string.splash_dialog_right, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(Settings.ACTION_SETTINGS));
+                    }
+                });
+                adb.setNegativeButton(R.string.splash_dialog_left, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        handlingWifi();
+                    }
+                });
+                adb.show();
+            }
+        else {
+                startActivity(new Intent(SplashScreen.this,SignInActivity.class));
+                finish();
+            }
     }
     public void handlingWifi(){
         WifiManager wm=(WifiManager)getSystemService(WIFI_SERVICE);
