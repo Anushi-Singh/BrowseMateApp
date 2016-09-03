@@ -2,10 +2,10 @@
 <resources>
     <color name="colorPrimary">#00695C</color>
     <color name="colorPrimaryDark">#004D40</color>
-    <color name="colorAccent">#E0F2F1</color>
+    <color name="colorAccent">#009688</color>
     <!-- Color of Brand Name Diplayed on the Splash Screen
     as well as other Headers -->
-    <color name="brand_name">@color/colorAccent</color>
+    <color name="brand_name">#E0F2F1</color>
     <!-- End -->
     <!-- Background Color of the App's body -->
     <color name="splash_background">#00796B</color>
