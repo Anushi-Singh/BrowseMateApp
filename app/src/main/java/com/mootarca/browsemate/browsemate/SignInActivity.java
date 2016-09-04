@@ -153,4 +153,16 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         super.onStop();
         fae.removeAuthStateListener(fal);
     }
+    public void forgotPassword(View v){
+        emailVar=email.getText().toString().trim();
+        fae.sendPasswordResetEmail(emailVar)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(SignInActivity.this, "Check Your Mail", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 }
