@@ -5,5 +5,6 @@
     <!-- End -->
     <!-- Text Size of Brand Name in the Splash Screen. -->
     <dimen name="brand_name_text_size">50dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
     <!-- End -->
 </resources>

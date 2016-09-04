@@ -13,4 +13,5 @@
     <string name="not_a_registered_user">Not a registered user?</string>
     <string name="sign_up">Sign Up</string>
     <string name="or_login_with">Or Login With</string>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>

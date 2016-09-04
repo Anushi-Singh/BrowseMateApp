@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +18,23 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SplashScreen extends AppCompatActivity {
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+public class SplashScreen extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     View fullScreenView;
     TextView tv;
     AlertDialog.Builder adb;
     static final int TIME_OUT=1500;
     View view;
+    FirebaseAuth fa;
+    FirebaseUser fu;
+    GoogleApiClient gac;
+    String username,photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +101,18 @@ public class SplashScreen extends AppCompatActivity {
                 adb.show();
             }
         else {
-                startActivity(new Intent(SplashScreen.this,SignInActivity.class));
+                fa=FirebaseAuth.getInstance();
+                fu=fa.getCurrentUser();
+                GoogleSignInOptions gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
+                gac=new GoogleApiClient.Builder(this).enableAutoManage(this,this)
+                        .addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
+                if (fu==null) {
+                    startActivity(new Intent(SplashScreen.this, SignInActivity.class));
+                }
+                else {
+                    startActivity(new Intent(SplashScreen.this,HomeActivity.class));
+                }
                 finish();
             }
     }
@@ -107,5 +130,10 @@ public class SplashScreen extends AppCompatActivity {
         else {
             startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
         }
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
