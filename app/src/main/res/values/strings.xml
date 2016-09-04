@@ -6,4 +6,11 @@
     <string name="splash_dialog_left">WI-FI</string>
     <string name="splash_dialog_right">Settings</string>
     <string name="not_wifi_snack">Your are not in a Accessible Wifi Zone.Go to Settings</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="not_a_registered_user">Not a registered user?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or_login_with">Or Login With</string>
 </resources>
