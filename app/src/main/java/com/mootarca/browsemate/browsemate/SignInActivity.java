@@ -83,10 +83,9 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
         forgotpass.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
     }
     public void signIn(View v){
-        Toast.makeText(SignInActivity.this, "sign in", Toast.LENGTH_SHORT).show();
         emailVar=email.getText().toString().trim();
         passwordVar=password.getText().toString().trim();
-        fa.signInWithEmailAndPassword(emailVar,passwordVar)
+        fae.signInWithEmailAndPassword(emailVar,passwordVar)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -100,11 +99,10 @@ public class SignInActivity extends AppCompatActivity implements GoogleApiClient
                 });
     }
     public void signUp(View v){
-        Toast.makeText(SignInActivity.this, "sign up", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(SignInActivity.this,SignUpActivity.class));
 
     }
     public void googleAuth(View v){
-        Toast.makeText(SignInActivity.this, "google", Toast.LENGTH_SHORT).show();
         Intent i= Auth.GoogleSignInApi.getSignInIntent(gac);
         startActivityForResult(i,9999);
     }
