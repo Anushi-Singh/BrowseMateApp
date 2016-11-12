@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -18,11 +19,16 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomeActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     FirebaseAuth fa;
     GoogleApiClient gac;
+    Button b2,b3,b4,b5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        b2=(Button)findViewById(R.id.button2);
+        b3=(Button)findViewById(R.id.button3);
+        b4=(Button)findViewById(R.id.button4);
+        b5=(Button)findViewById(R.id.button5);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         fa=FirebaseAuth.getInstance();
@@ -46,5 +52,17 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+    public void findFlat(View v){
+        startActivity(new Intent(HomeActivity.this,FetchFlat.class));
+    }
+    public void regFlatSold(View v){
+        startActivity(new Intent(HomeActivity.this,AddSellingFlat.class));
+    }
+    public void regFlatLent(View v){
+        startActivity(new Intent(HomeActivity.this,AddFlat.class));
+    }
+    public void findRoommate(View v){
+        startActivity(new Intent(HomeActivity.this,FindRoommate.class));
     }
 }

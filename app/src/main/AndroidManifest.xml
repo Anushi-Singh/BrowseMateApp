@@ -30,8 +30,13 @@
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SignUpActivity"
-            android:theme="@style/SplashActivityTheme"></activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:theme="@style/SplashActivityTheme" />
+        <activity android:name=".AddFlat" />
+        <activity android:name=".AddSellingFlat" />
+        <activity android:name=".FetchFlat" />
+        <activity android:name=".FindRoommate"></activity>
     </application>
 
 </manifest>
