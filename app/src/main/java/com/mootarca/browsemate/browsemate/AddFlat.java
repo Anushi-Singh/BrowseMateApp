@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AddFlat extends AppCompatActivity {
     EditText et8,et9,et10;
     Button b6;
-    String price,name,id;
+   // String price,name,id;
     FirebaseDatabase database;
     DatabaseReference myRef;
    /* public AddFlat(String p,String n,String i){
@@ -39,6 +39,7 @@ public class AddFlat extends AppCompatActivity {
         String price=et8.getText().toString().trim();
         String name=et9.getText().toString().trim();
         String id=et10.getText().toString().trim();
+        String type="renting";
         // Write a message to the database
         //AddFlat af=new AddFlat();
         database = FirebaseDatabase.getInstance();
@@ -49,6 +50,8 @@ public class AddFlat extends AppCompatActivity {
         myRef.setValue(name);
         myRef = database.getReference(id).child("price");
         myRef.setValue(price);
+        myRef = database.getReference(id).child("type");
+        myRef.setValue(type);
         et8.setText("");
         et9.setText("");
         et10.setText("");

@@ -36,7 +36,8 @@
         <activity android:name=".AddFlat" />
         <activity android:name=".AddSellingFlat" />
         <activity android:name=".FetchFlat" />
-        <activity android:name=".FindRoommate"></activity>
+        <activity android:name=".FindRoommate" />
+        <activity android:name=".FlatDesc"></activity>
     </application>
 
 </manifest>

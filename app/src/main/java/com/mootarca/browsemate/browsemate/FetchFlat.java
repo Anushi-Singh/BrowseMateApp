@@ -1,7 +1,10 @@
 package com.mootarca.browsemate.browsemate;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -41,6 +44,12 @@ public class FetchFlat extends AppCompatActivity {
                 Toast.makeText(FetchFlat.this, "Toast"+Integer.toString(mylist.size()), Toast.LENGTH_SHORT).show();
                 ArrayAdapter<String> adapter=new ArrayAdapter<String>(FetchFlat.this,android.R.layout.simple_dropdown_item_1line,mylist);
                 lv.setAdapter(adapter);
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        startActivity(new Intent(FetchFlat.this,FlatDesc.class));
+                    }
+                });
             }
 
             @Override
