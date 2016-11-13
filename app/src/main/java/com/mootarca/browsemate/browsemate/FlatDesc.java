@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class FlatDesc extends AppCompatActivity {
@@ -29,8 +30,11 @@ public class FlatDesc extends AppCompatActivity {
         tv8=(TextView)findViewById(R.id.textView8);
         tv9=(TextView)findViewById(R.id.textView9);
         Intent intent=getIntent();
-        String name=intent.getStringExtra("name");
+        final String name=intent.getStringExtra("name");
         tv6.setText(name);
+       /* Query myTopPostsQuery = dr.child(name)
+                .limitToFirst(100);*/
+
         ValueEventListener vel=new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -38,12 +42,15 @@ public class FlatDesc extends AppCompatActivity {
                 // String s=dataSnapshot.getValue().toString();
                 for (DataSnapshot child: dataSnapshot.getChildren()) {
                     // Query myTopPostsQuery = child.child("name");
-                    String price =child.child("price").getValue().toString();
-                    String type =child.child("type").getValue().toString();
-                   // String id =child.child("id").getValue().toString();
-                  //  tv7.setText(id);
-                    tv8.setText(price);
-                    tv9.setText(type);
+                    String temp =child.child("name").getValue().toString();
+                    if (temp.equals(name)) {
+                        String price = child.child("price").getValue().toString();
+                        String type = child.child("type").getValue().toString();
+                        // String id =child.child("id").getValue().toString();
+                        //  tv7.setText(id);
+                        tv8.setText(price);
+                        tv9.setText(type);
+                    }
                 }
 
 
@@ -55,7 +62,34 @@ public class FlatDesc extends AppCompatActivity {
 
             }
         };
+
         dr.addValueEventListener(vel);
+
+
+/*
+        // My top posts by number of stars
+        myTopPostsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot child: dataSnapshot.getChildren()) {
+                    // TODO: handle the post
+                    // Query myTopPostsQuery = child.child("name");
+                    String price =child.child("price").getValue().toString();
+                    String type =child.child("type").getValue().toString();
+                    // String id =child.child("id").getValue().toString();
+                    //  tv7.setText(id);
+                    tv8.setText(price);
+                    tv9.setText(type);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+               // Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });*/
 
     }
 }
