@@ -47,7 +47,9 @@ public class FetchFlat extends AppCompatActivity {
                 lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        startActivity(new Intent(FetchFlat.this,FlatDesc.class));
+                        Intent intent=new Intent(FetchFlat.this,FlatDesc.class);
+                        intent.putExtra("name", (String) mylist.get(i));
+                        startActivity(intent);
                     }
                 });
             }
