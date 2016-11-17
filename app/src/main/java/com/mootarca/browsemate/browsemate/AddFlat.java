@@ -55,6 +55,6 @@ public class AddFlat extends AppCompatActivity {
         et8.setText("");
         et9.setText("");
         et10.setText("");
-        Toast.makeText(AddFlat.this, "Compleated", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AddFlat.this, "Completed", Toast.LENGTH_SHORT).show();
     }
 }
