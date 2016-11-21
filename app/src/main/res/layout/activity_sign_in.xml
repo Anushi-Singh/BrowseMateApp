@@ -160,7 +160,7 @@
                 android:id="@+id/imageButton"
                 android:src="@drawable/fb_logo"
                 android:background="@color/splash_background"
-                android:onClick="fbAuth"
+                android:onClick="guestAuth"
                 android:layout_alignParentBottom="true"
                 android:layout_toStartOf="@+id/imageView"
                 android:layout_below="@+id/or"
